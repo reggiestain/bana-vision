@@ -1,0 +1,630 @@
+@import url("master.css");
+@import url("SchoolProfilePage.css");
+@import url("myFeedPage.css");
+@import url("ourEventsPage.css");
+@import url("search.css");
+@import url("sidebarLeft.css");
+
+:root {
+  --width-xs: ;
+  --bana-orange: #ff5500;
+
+  --card-width: 34.75rem;
+
+  /*======= colors ===========*/
+  --bg-light: #fff;
+  --bg-dark: #242c39;
+  --text-lcolor: #222;
+  --text-dcolor: #fff;
+  /*=======font=========*/
+}
+
+.post-card {
+  max-width: var(--card-width);
+  margin-left: 1rem;
+}
+
+.dropdown-menu.show {
+  z-index: 5000000;
+}
+
+.post-loading-card {
+  max-width: var(--card-width);
+}
+
+.post-avatar {
+  width: 35px;
+  height: 35px;
+}
+
+.post-user-name {
+  font-size: 0.755rem;
+  margin-bottom: 0.15rem;
+}
+
+body.modal-open {
+  -webkit-overflow-scrolling: auto;
+  overflow: hidden;
+}
+
+.modal-header {
+  /*background-color: var(--bana-orange);*/
+  background-color: #292b63;
+}
+
+.modal-title {
+  color: #ffffff;
+}
+
+.modal-header .close {
+  color: #ffffff;
+}
+
+#post-pic-modal-content {
+  background-color: #ffffff;
+  height: 653px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.change-image {
+  background-color: #000000;
+  opacity: 0.65;
+  padding: 0.15rem;
+  border-radius: 0.25rem;
+  border: 1px solid;
+  border-color: #ffffff;
+}
+
+.change-image:after {
+  content: " edit";
+  font-size: 95%;
+}
+
+.posts /*for mobile devices*/
+ {
+  padding-left: 20px;
+  padding-right: 120px;
+  margin: auto;
+}
+.jumbotron {
+  background-color: #478ac9;
+  /* color: #fff !important; */
+}
+.post-user-name {
+  font-size: 1.2rem;
+  margin-bottom: 0.15rem;
+  color: #444 import !important;
+
+  padding-left: 20px;
+  padding-right: 120px;
+  margin: auto;
+}
+
+#page_content {
+  margin-left: 0;
+}
+
+#banner /**/
+ {
+  display: inline-block;
+}
+
+#search_group /*for small devices*/
+ {
+  padding-right: 15px;
+  width: 80%;
+}
+
+#footer-img /*for small devices*/
+ {
+  display: inline;
+}
+
+.footer-tabs {
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 0px;
+}
+
+.modal-content /**/
+ {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0;
+  padding: 0;
+}
+
+.modal-lg /**/
+ {
+  max-width: 100% !important;
+}
+
+.register /**/
+ {
+  margin-top: 25%;
+  padding: 3%;
+}
+
+#sponsored-card /**/
+ {
+  position: absolute;
+  min-height: 3rem;
+  right: 2rem;
+  bottom: 8rem;
+  color: #ffffff;
+}
+
+.jumbotron /**/
+ {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  top: 0px;
+  z-index: 5000;
+  /* background-color: var(--bana-orange); */
+  margin-bottom: 0 !important;
+  border-radius: 0 !important;
+}
+
+#jumbotron-name /**/
+ {
+  margin-top: 0px;
+  padding-top: 0;
+}
+
+#post-pic-modal-content {
+  height: 320px;
+}
+
+#navigation-sidebar {
+  /* background-image: url("../../assets/img/sayagata-400px.png"); */
+  background-size: 150px 150px;
+  background-repeat: repeat;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)   ; */
+}
+
+#footer /**/
+ {
+  position: relative;
+  margin-top: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 100%;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .left-sidebar {
+    /* background-image: url("../../assets/img/sayagata-400px.png"); */
+    /* background-size: 150px 150px; */
+    background-repeat: repeat;
+    position: fixed !important;
+    z-index: 50000000;
+    top: 152px !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  #banner /**/
+ {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #page_content /**/
+ {
+    padding-top: 120px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  #who-are-we /**/
+ {
+    padding-right: 1rem;
+  }
+
+  #what-do-we-do {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  #how-we-do-it {
+    padding: 1.5rem 1rem !important;
+  }
+
+  .methods {
+    padding: 0.25rem 0.5rem;
+  }
+
+  .methods-child {
+    padding: 0.5rem;
+  }
+
+  .modal-dialog {
+    position: absolute;
+    top: 50px;
+    right: 0px;
+    bottom: 0;
+    left: 0px;
+    z-index: 10040;
+    overflow: auto;
+    overflow-y: auto;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 15px;
+  }
+
+  #sponsored-card {
+    bottom: 8rem;
+  }
+
+  .stickyEl {
+    /*position: -webkit-sticky !important;
+  position: sticky !important;*/
+    top: 7rem !important;
+  }
+
+  .profile-nav {
+    margin-left: 0 !important;
+  }
+
+  /* .profile-ppic {
+    width: 8rem;
+    height: 8rem;
+    position: absolute;
+    bottom: 1rem !important;
+    left: 2rem;
+    padding: 0.35rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  } */
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width: 321px) {
+  #banner {
+    display: inline-block;
+    margin-left: 0px;
+  }
+
+  #page_content {
+    /* margin-top: 2rem; */
+    margin-right: 0 !important;
+    min-height: 124vh;
+  }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width: 320px) {
+  #post-pic-modal-content {
+    height: 320px;
+  }
+}
+
+/* iPhone 4 - 5s ----------- */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+  only screen and (min-device-pixel-ratio: 1.5) {
+}
+
+/* iPhone 6 ----------- */
+@media only screen and (max-device-width: 667px),
+  only screen and (-webkit-device-pixel-ratio: 2) {
+  .jumbotron {
+    font-size: 14px !important;
+  }
+
+  .jumbotron p {
+    margin-bottom: 0;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 200;
+  }
+
+  #jumbotron-image {
+    height: 50px;
+    width: 50px;
+  }
+
+  #post-pic-modal-content {
+    height: 280px;
+  }
+}
+
+/* iPhone 6+ ----------- */
+@media only screen and (min-device-width: 414px),
+  only screen and (-webkit-device-pixel-ratio: 3) {
+  #post-pic-modal-content {
+    height: 350px;
+  }
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  #banner {
+    display: block;
+    margin-left: 0px;
+  }
+
+  #page_content {
+    padding-left: 10px;
+  }
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  /* Styles */
+  .about-pane {
+    max-width: 56.333333%;
+  }
+}
+
+/* Samsung Galaxy S7 ----------- */
+@media only screen and (-webkit-min-device-pixel-ratio: 3) and (min-resolution: 192dpi) and (max-width: 640px) {
+}
+
+@media only screen and (min-device-width: 576px) and (max-device-width: 1024px) {
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 1224px) {
+  /* Styles */
+  .about-pane {
+    max-width: 56.333333%;
+  }
+
+  #who-are-we {
+    padding-right: 16rem;
+  }
+
+  #what-do-we-do {
+    padding-left: 16rem;
+    padding-right: 16rem;
+  }
+
+  #how-we-do-it {
+    padding: 1.5rem 10rem !important;
+  }
+
+  .methods {
+    padding: 1.5rem 4rem;
+  }
+
+  .methods-child {
+    padding: 1.5rem;
+  }
+
+  .modal-dialog {
+    padding: 2rem 3rem !important;
+  }
+
+  /* body 
+ {
+    background-color: black;
+  } */
+
+  #navigation-sidebar {
+    position: sticky;
+    max-height: 36rem;
+    display: flex;
+    width: auto;
+  }
+
+  .left-sidebar {
+    /*max-height: 23rem;  dont uncomment unless absolutely neccessary */
+    top: 149px;
+    position: fixed;
+    padding: 0;
+  }
+
+  #post-pic-modal-content {
+    height: 650px !important;
+  }
+
+  #sponsored-card {
+    bottom: 4rem;
+  }
+
+  .home-card {
+    max-width: 23% !important;
+  }
+
+  .home-card-other {
+    margin-left: 1.9rem !important;
+  }
+
+  /* .profile-ppic {
+    width: 8rem;
+    height: 8rem;
+    position: absolute;
+    bottom: -1rem;
+    left: 2rem;
+    padding: 0.35rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  } */
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width: 1824px) {
+  .modal-dialog {
+    padding: 2rem 3rem !important;
+  }
+
+  #navigation-sidebar {
+    max-height: 32rem;
+  }
+
+  #post-pic-modal-content {
+    height: 650px;
+  }
+}
+
+.btn-orange {
+  color: #fff;
+  background-color: var(--bana-orange);
+  border-color: var(--bana-orange);
+}
+
+.stickyEl {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 7rem !important;
+}
+
+.profile-nav {
+  margin-left: 9rem;
+}
+.sticky {
+  top: 30rem !important;
+  position: fixed !important;
+}
+
+fieldset,
+label {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 1.5em;
+  margin: 10px;
+}
+
+/****** Style Star Rating Widget *****/
+.rating {
+  border: none;
+  float: left;
+}
+
+.rating > input {
+  display: none;
+}
+
+.rating > label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: "Font Awesome\ 5 Free";
+  font-weight: 900;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before {
+  content: "\f089";
+  position: absolute;
+}
+.rating > label {
+  color: #ddd;
+  float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label {
+  color: #ffd700;
+} /* hover previous stars in list */
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label {
+  color: #ffed85;
+}
+
+/* .dropdown-menu 
+{
+  left: -7rem !important;
+  } */
+
+.student-project:hover {
+  background-color: #f0f0f0;
+  padding: 0.25rem;
+  border: solid 0.01rem;
+  border-radius: 0.35rem;
+  color: orange;
+}
+
+.card-header-main {
+  padding: 0.45rem 1.25rem;
+}
+.card-header-main::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid #ffffff;
+  border-right: 7px solid transparent;
+  border-left: 7px solid transparent;
+  position: absolute;
+  top: 20px;
+  left: 54px;
+}
+
+.nav-item.nav-link.active::after,
+.nav-link.active.show::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid #f0f0f0;
+  border-right: 7px solid transparent;
+  border-left: 7px solid transparent;
+  position: inherit;
+  /*  top: 20px;
+    left: 54px;
+    */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: -0.52rem;
+}
+
+figure {
+  max-width: 100%;
+}
+
+.figure {
+  max-width: 100%;
+}
+
+.help-block {
+  color: red !important;
+}
+
+.tab-icon-p {
+  margin-left: 12px;
+}
+.profile-info-list {
+  margin: 2px 0px;
+  color: #444;
+  display: flex;
+  align-items: center;
+}
+.profile-info-list-lable {
+  font-size: 1rem;
+  font-weight: bold;
+  align-items: center;
+  color: #444;
+  margin-right: 5px;
+}
+.bottom-curve {
+  border-radius: 0px 0px 10px 10px !important;
+}
+.top-curve {
+  border-radius: 10px 10px 0px 0px !important;
+}
+body {
+  --bg-opacity: 1;
+  background-color: #f9fafb;
+  background-color: rgba(249, 250, 251, var(--bg-opacity)) !important;
+  /* background-color: var(--bg-light) !important; */
+}
+.jumbotron-spacer {
+  margin-top: 125px;
+}

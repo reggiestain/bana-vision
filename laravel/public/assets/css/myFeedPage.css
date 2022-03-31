@@ -1,0 +1,78 @@
+  #feed-textarea
+  {
+   border:none;
+   background-color:transparent;
+   padding:0;
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+   resize: none;
+ }
+
+ .feeds-inputs
+ {
+   border:none;
+   background-color:transparent;
+   padding:0;
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+   resize: none;
+ }
+
+ .feeds-inputs.form-control:focus 
+ {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0);
+
+}
+
+.inputs.form-control:focus 
+{
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0);
+
+}
+
+.feed-radio
+{
+  border: solid grey 1px;
+  border-radius: 7rem
+  padding: 0.5rem 0.75rem;
+  background-color:#ffffff;
+}
+
+.feed-radio-icon
+{
+  display:inline;
+}
+
+#event-radio
+{
+  color:#00016C;
+}
+
+#bursary-radio
+{
+  color:#d1b808;
+}
+
+#need-radio
+{
+  color:#70a0f2;
+}
+::-webkit-input-placeholder {
+}
+color: peachpuff;
+font-size: 13px;
+}
+::-moz-placeholder {
+  color: peachpuff;
+  font-size: 13px;
+}
+:-ms-input-placeholder {
+  color: peachpuff;
+  font-size: 13px;
+}
+::placeholder {
+  color: peachpuff;
+  font-size: 13px;
+}

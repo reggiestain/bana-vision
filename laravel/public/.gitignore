@@ -1,0 +1,16 @@
+/vendor
+/node_modules
+/public/storage
+Homestead.yaml
+Homestead.json
+.env
+/storage/app/*
+#dont load the files but only the directory
+!/storage/app/.gitkeep
+
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitkeep
+/storage/framework/views/*
+!/storage/framework/views/.gitkeep
+/storage/logs
+!/storage/logs/.gitkeep

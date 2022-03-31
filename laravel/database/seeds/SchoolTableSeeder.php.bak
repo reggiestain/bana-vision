@@ -1,0 +1,403 @@
+<?php
+
+use Illuminate\Database\Seeder;
+
+use App\SchoolStudent;
+
+use App\Setting;
+use App\Teacher;
+use App\Curriculumn;
+
+class SchoolTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+
+      factory(App\School::class, 10)->create()
+      ->each(function($s) 
+      {
+
+
+        $school = $s;
+
+        
+        //CREATE CURRICULUMN 
+        //for each subject out of 7
+        for ($i=0; $i <7; $i++)
+        { 
+          //for each grade 
+          for ($j=6; $j <=12; $j++) 
+          { 
+            //CREATE CURRICULUMN 
+            $count_crm = 0;
+            $fst_occ_crm = true;
+            $c_grade = 0;
+            $subjects_arr = array('setswana','english','afrikaans','physical science','mathematics','electricians work','technical drawing');
+            $s->curriculumn()
+            ->saveMany(factory(App\Curriculumn::class,1)
+              ->make(['grade'=>$j,'subject'=>$subjects_arr[$i]]))
+            ->each(function($e) use($school,&$count_crm,&$fst_occ_crm)
+            {
+              \Seeder::counter("making curriculumn",$count_crm,$fst_occ_crm);
+            });
+          }
+        }
+
+        //performs the following functions 20 times;
+        $s->user()
+        ->save(factory(App\User::class)
+        ->make())
+        ->each(function($e) use($school)
+        {
+              //creates ratings and messages
+              $count_rm = 0;
+              $fst_occ_rm = true;
+        /*creates error because id is non numeric*/if(($e->id - 1) > 0) //if is not first user
+              {
+               \Seeder::counter("making ratings and messages",$count_rm,$fst_occ_rm);
+                $school->ratings()->saveMany(factory(App\Rating::class,3)
+                  ->make(['user_id'=>$e->id-1]));
+                $e->messages()->saveMany(factory(App\Message::class,3)
+                  ->make(['sendTo_id'=>$e->id-1]));
+              }
+                //creates 27 events for each user 
+
+                $count_e = 0;
+                $fst_occ_e = true;   
+              $e->events()->saveMany(factory(App\OurEvent::class,12)
+                ->make())
+              ->each(function($i)use(&$count_e,&$fst_occ_e)
+              {
+                
+                \Seeder::counter("making events",$count_e,$fst_occ_e);
+                \Imagery::seederSaveImages('events',null,'nightlife',320,320,$i);
+
+              });
+                //creates 7 bursaries for each school
+              $count_b = 0;
+              $fst_occ_b = true;
+              $e->bursaries()->saveMany(factory(App\Bursary::class,7)
+                ->make())
+              ->each(function($bu) use(&$count_b,&$fst_occ_b)
+              {
+                $bu->requirements()->saveMany(factory(App\BursaryRequirement::class,5)
+                ->make());
+                \Seeder::counter("making bursaries",$count_b,$fst_occ_b);
+                \Imagery::seederSaveImages('bursary',null,'business',320,320,$bu);
+
+              });
+                  #make post to save profile/cover image
+              $count = 0;
+              $count_pp = 0;
+              $fst_occ_pp = true; 
+              $e->posts()->saveMAny(factory(App\Post::class,2)
+                ->make())
+              ->each(function($pst) use(&$count_pp,&$fst_occ_pp,&$count)
+              {
+                \Seeder::counter("saving profile pictures",$count_pp,$fst_occ_pp);
+                \Seeder::saveProfilePics($count,$pst);
+
+
+              });
+            });
+
+        //creates students for school
+
+        $count_st = 0;
+        $fst_occ_st = true;
+        $s->students()->saveMany(factory(App\Student::class,12)
+        ->make())
+        ->each(function($st) use($s,&$count_st,&$fst_occ_st,$school) 
+        {
+          \Seeder::counter("making students",$count_st,$fst_occ_st);
+        //$u->assets()->saveMany(factory(App\Assets::class,6)->make());
+          $st->user()->saveMany(factory(App\User::class,1)
+        ->make(/*['name' => $u->id."_logo.jpg"]*/))
+          ->each(function($u) // make a post to save the profile/cover images
+          {
+            $count_stu = 0;
+            $u->posts()->saveMAny(factory(App\Post::class,2)
+              ->make())
+            ->each(function($pos) use(&$count_stu)
+            {
+
+              \Seeder::saveProfilePics($count_stu,$pos);
+
+            });
+          });
+
+        //MAKE SCHOOL STUDENT
+        $count_scs = 0;
+        $fst_occ_scs = true;
+        $st->schoolStudent()->saveMany(factory(App\SchoolStudent::class,1)
+        ->make(['school_id'=>$school->id]))
+        ->each(function($stt) use($s,&$count_scs,&$fst_occ_scs,$school)
+        {
+          \Seeder::counter("making school student",$count_scs,$fst_occ_scs);
+          \Imagery::seederSaveImages('profile','students','business',320,320,$stt);
+
+          //create Attendance
+          $count_attn = 0;
+          $fst_occ_attn = true;
+          $week = 1;
+          $stt->attendance()->saveMany(factory(App\Attendance::class,16)
+            ->make(['school_id' => $stt->school_id,'week'=>$week++]))
+          ->each(function($attn) use(&$count_attn,&$fst_occ_attn,$school)
+          {
+            \Seeder::counter("making attendance",$count_attn,$fst_occ_attn);
+            //MAKE SUBJECT ATTENDED
+            $count_sat = 0;
+            $fst_occ_sat = true;
+            $attn->subjectAttended()->saveMany(factory(App\SubjectAttended::class,7)
+              ->make(['curriculumn_id'=>Curriculumn::where('school_id',$school->id)->inRandomOrder()
+            ->distinct()->first()]))
+            ->each(function($attn) use(&$count_attn,&$fst_occ_attn)
+            {
+              \Seeder::counter("making attendance",$count_attn,$fst_occ_attn);
+            });
+          });
+
+          //create guardian
+          $count_ga = 0;
+          $fst_occ_ga = true;
+          $stt->guardian()->saveMany(factory(App\Guardian::class,1)
+            ->make(['school_id' => $stt->school_id]))
+          ->each(function($sa) use(&$count_ga,&$fst_occ_ga)
+          {
+            \Seeder::counter("making guardian",$count_ga,$fst_occ_ga);
+          });
+          //make feature student
+          $count_fs = 0;
+          $fst_occ_fs = true; 
+          $randomise = rand(0,10);
+          if($randomise >7)   //randomly make feature student
+          {
+            \Seeder::counter("making featured student",$count_fs,$fst_occ_fs);
+            $stt->featuredStudents()->save(factory(App\FeaturedStudent::class)
+              ->make(['school_student_id'=>$stt->id]));
+          }
+
+          //make misconduct
+          $count_fs = 0;
+          $fst_occ_fs = true; 
+          $randomise = rand(0,10);
+          if($randomise >7)
+          {
+            \Seeder::counter("making misconduct",$count_fs,$fst_occ_fs);
+            $stt->studentMisconduct()->save(factory(App\StudentMisconduct::class)
+              ->make(['school_id'=>$school->id]));
+          }
+          //create student awards
+          $count_sta = 0;
+          $fst_occ_sta = true;
+          $stt->studentAwards()->saveMany(factory(App\StudentAward::class,6)
+            ->make(['school_id' => $stt->school_id]))
+          ->each(function($sa) use(&$count_sta,&$fst_occ_sta)
+          {
+            \Seeder::counter("making student award",$count_sta,$fst_occ_sta);
+            \Imagery::seederSaveImages('student_awards','students','sports',320,320,$sa->schoolStudent,$sa);
+          });
+          //create student projects
+          $count_sp= 0;
+          $fst_occ_sp = true;
+          $stt->studentsProjects()->saveMany(factory(App\StudentsProject::class,2)
+            ->make(['school_id'=>$stt->school_id]))
+          ->each(function($sp) use($stt,&$count_sp,&$fst_occ_sp)
+          {
+            \Seeder::counter("making student project",$count_sp,$fst_occ_sp);
+            $image = \Imagery::seederSaveImages('students_projects',null,'nature',320,320,$sp->school,$sp);
+            $sp->schoolStudents()->sync([$stt->id]);
+          });
+        });// end students
+        });
+
+          
+
+
+        //creates 7 staff members for each school
+        $count_stff = 0;
+        $fst_occ_stff = true;
+        $s->staff()->saveMany(factory(App\Staff::class,6)
+          ->make())
+        ->each(function($u) use(&$count_stff,&$fst_occ_stff,$school) 
+        {
+          \Seeder::counter("making staff",$count_stff,$fst_occ_stff);
+          $u->user()->saveMany(factory(App\User::class,1)
+        ->make(/*['usable_id' => $u->id]*/))
+          ->each(function($p) use($school)
+          {
+            $count = 0;
+            $p->posts()->saveMAny(factory(App\Post::class,2)
+              ->make())
+            ->each(function($po) use(&$count,$p)
+            {
+
+              \Seeder::saveProfilePics($count,$po);
+            });
+          });
+
+           echo('position'.$u->position);
+            if(strpos($u->position, 'teacher') !== false)
+              {
+                // MAKE TEACHER
+                $count_tch = 0;
+                $fst_occ_tch = true;
+                $u->teacher()
+                ->saveMany(factory(App\Teacher::class,1)
+                ->make(['school_id'=>$school->id]))
+                ->each(function($tp) use(&$count_tch,&$fst_oc_tch,$school)
+                {
+                  \Seeder::counter("making teacher",$count_tch,$fst_occ_tch);
+                  // MAKE TEACHER PROFICIENCY
+                  $count_tp = 0;
+                  $fst_occ_tp = true;
+                  $tp->teacherProficiency()
+                  ->saveMany(factory(App\TeacherProficiency::class,7)
+                  ->make(['curriculumn_id'=>Curriculumn::where('school_id',$school->id)->inRandomOrder()->first()]))
+                  ->each(function($tp) use(&$count_tp,&$fst_oc_tp)
+                  {
+                    \Seeder::counter("making teacher proficiency",$count_tp,$fst_occ_tp);
+
+                  });
+
+                });
+              }
+        });
+
+         //CREATE CURRICULUMN 
+        //for each class in grade
+        $class_letter = array('a','b','c','d','e');
+        for ($i=0; $i <5; $i++)
+        { 
+          //for each grade 
+          for ($j=6; $j <=12; $j++) 
+          { 
+
+            // MAKE CLASSES
+            $count_cl = 0;
+            $fst_occ_cl = true;
+            $s->schoolClass()
+            ->saveMany(factory(App\SchoolClass::class,1)
+              ->make(['teacher_id'=> Teacher::where('school_id',$school->id)->inRandomOrder()->first(),'grade'=>$j,'class_name'=>$class_letter[$i]]))
+            ->each(function($e) use($school,&$count_cl,&$fst_oc_cl)
+            {
+              \Seeder::counter("making classes",$count_cl,$fst_occ_cl);
+            });
+          }
+        }
+
+        // MAKE BOOKS
+        $count_bo = 0;
+        $fst_occ_bo = true;
+        $s->book()
+        ->saveMany(factory(App\Book::class,15)
+        ->make())
+        ->each(function($e) use($school,&$count_bo,&$fst_oc_bo)
+        {
+          \Seeder::counter("making books",$count_bo,$fst_occ_bo);
+          \Imagery::seederSaveImages('books',null,'nightlife',320,320,$e->school,$e);
+          //MAKE LOANED BOOK
+          $count_lb = 0;
+          $fst_occ_lb = true;
+          $e->loanedBook()
+          ->saveMany(factory(App\LoanedBook::class,1)
+          ->make(['school_id'=>$school->id,'school_student_id'=> SchoolStudent::where('school_id',$school->id)->inRandomOrder()->first()]))
+          ->each(function($nt) use($count_lb,$fst_occ_lb)
+          {
+            \Seeder::counter("making books",$count_lb,$fst_occ_lb);
+          }
+          );
+
+          //MAKE STORAGE BOOK
+          $count_sb = 0;
+          $fst_occ_sb = true;
+          $e->storageBook()
+          ->saveMany(factory(App\StorageBook::class,1)
+          ->make(['school_id'=>$school->id]))
+          ->each(function($nt) use($count_sb,$fst_occ_sb)
+          {
+            \Seeder::counter("making storage books",$count_sb,$fst_occ_sb);
+          }
+          );
+
+          //MAKE LIBRARY BOOKS
+          $count_li = 0;
+          $fst_occ_li = true;
+          $e->libraryBook()
+          ->saveMany(factory(App\LibraryBook::class,1)
+          ->make(['school_id'=>$school->id]))
+          ->each(function($re) use($school,$count_li,$fst_occ_li)
+          {
+            \Seeder::counter("making library books",$count_li,$fst_occ_li);
+            //MAKE REQUESTED BOOK
+            $count_re = 0;
+            $fst_occ_re = true;
+            $re->requestedBook()
+            ->saveMany(factory(App\RequestedBook::class,1)
+            ->make(['school_id'=>$school->id,'requestable_id'=> SchoolStudent::where('school_id',$school->id)->inRandomOrder()->first(),'requestable_type'=>'App\SchoolStudent']))
+            ->each(function($ch) use($school,$count_re,$fst_occ_re)
+            {
+              \Seeder::counter("making requested books",$count_re,$fst_occ_re);
+              //MAKE CHECKED OUT BOOKS
+              $count_cb = 0;
+              $fst_occ_cb = true;
+              $ch->checkedOutBook()
+              ->saveMany(factory(App\CheckedOutBook::class,1)
+              ->make(['school_id'=>$school->id,'checkedable_id'=> SchoolStudent::where('school_id',$school->id)->inRandomOrder()->first(),'checkedable_type'=>'App\SchoolStudent']))
+              ->each(function($rt) use($count_cb,$fst_occ_cb)
+              {
+                \Seeder::counter("making checked out books",$count_cb,$fst_occ_cb);
+              }
+            );
+            }
+            );
+          }
+        );
+        });
+           /* //creates 3 featured students for each school
+               $students = Student::where('school_id',$s->id)->get();
+               
+            if ($students->count() > 0)
+            {
+                $s->featuredStudents()->saveMany(factory(App\FeaturedStudent::class,3)
+                ->make(['student_id' => $students->random()->id]));
+            }
+*/
+            //creates  needs overview for each school
+            $count_no = 0;
+            $fst_occ_no = true;
+            $s->needsOverview()->saveMany(factory(App\NeedsOverview::class,1)
+              ->make())
+            ->each(function($no) use(&$count_no,&$fst_oc_no)
+            {
+              \Seeder::counter("making needs overview",$count_no,$fst_occ_no);
+              \Imagery::seederSaveImages('needs_overview',null,'fashion',320,320,$no->school,$no);
+            });
+            //creates  needs Gratitude for each school
+            $count_ng = 0;
+            $fst_occ_n = true;
+            $s->needsGratitude()->saveMany(factory(App\NeedsGratitude::class,5)
+              ->make())
+            ->each(function($ng) use(&$count_ng,&$fst_occ_ng)
+            {
+              \Seeder::counter("making needs gratitude",$count_ng,$fst_occ_ng);
+              \Imagery::seederSaveImages('needs_gratitude',null,'city',320,320,$ng->school,$ng);
+            });
+             //creates  needs for each school
+            $count_nd = 0;
+            $fst_occ_nd = true;
+            $s->needs()->saveMany(factory(App\OurNeed::class,13)
+              ->make())
+            ->each(function($nd) use(&$count_nd,&$fst_occ_nd)
+            {
+              \Seeder::counter("making needs",$count_nd,$fst_occ_nd);
+              \Imagery::seederSaveImages('our_need',null,'food',320,320,$nd->school,$nd);
+            });
+          });
+  }
+}

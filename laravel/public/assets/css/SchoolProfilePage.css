@@ -1,0 +1,105 @@
+<<<<<<< HEAD
+#left-sidebar 
+{
+  top: 0;
+  position: relative; 
+=======
+#left-sidebar {
+  top: 9rem;
+  position: relative;
+>>>>>>> change-to-vue-routing
+  padding: 0;
+}
+
+.p-1 {
+  float: right !important;
+}
+
+.fa-card-options {
+  color: #c5c7cb;
+}
+
+.video-image::after {
+  font-family: "Font Awesome\ 5 Free";
+  font-weight: 900;
+  content: "\f005";
+  padding: 0.3rem !important;
+  border-radius: 5rem;
+  background-color: #ffffff;
+  position: relative;
+}
+
+#navigation-sidebar {
+  background-repeat: repeat;
+  position: relative;
+}
+
+#pill-review::after {
+  font-family: "Font Awesome\ 5 Free";
+  font-weight: 900;
+  content: attr(data-rating) "\f005";
+  padding: 0.3rem !important;
+  border-radius: 5rem;
+  background-color: #ffffff;
+  position: relative;
+  left: 1.2rem;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+}
+#details {
+  color: #000000 !important;
+}
+
+.details-subsection .fa {
+  /* color: #000080; */
+  transition: 0.1s transform ease-in-out;
+}
+
+.details-subsection.collapsed .fa {
+  transform: rotate(90deg);
+}
+
+#profilepic::after {
+  font-size: 1.65rem;
+  color: #ffffff;
+  position: absolute;
+  content: "" attr(data-username) "";
+  bottom: 2rem;
+  left: 12rem;
+}
+
+ul {
+  border-bottom: none;
+}
+
+.nav-item a {
+  font-weight: bold;
+}
+
+.nav-item {
+  min-height: 2rem;
+  padding: 0.5rem;
+}
+
+.nav-tabs {
+  border-bottom: none;
+  min-height: 2rem;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.nav-item .nav-link .gallery-link {
+  padding: 0.5rem 1.25rem !important;
+}
+
+.nav-item.nav-link.gallery-link.active::after,
+.nav-link.active.gallery-link.show::after {
+  border-bottom: 8px solid #ffffff;
+}
+
+/* .fa-nav-tab
+{
+  color:#ff5500;
+} */

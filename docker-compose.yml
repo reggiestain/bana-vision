@@ -1,0 +1,50 @@
+version: "3"
+services:
+
+#Laravel App
+  app:
+    build:
+      args:
+        user: reggie
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: laravel-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./laravel:/var/www
+    depends_on:
+          - mongo
+          - nginx   
+ #Nginx Service
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./laravel:/var/www
+      - ./nginx/conf.d:/etc/nginx/conf.d/
+  #Mysl Service
+  mongo:
+        container_name: mongo
+        image: mongo
+        volumes:
+          - ./data/db:/data/db
+        ports:
+            - 27017:27017
+        logging:
+            driver: none
+  mongo-express:
+    image: mongo-express
+    container_name: mexpress
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_URL=mongodb://root:password@mongo:27017/?authSource=admin
+      - ME_CONFIG_BASICAUTH_USERNAME=mexpress
+      - ME_CONFIG_BASICAUTH_PASSWORD=mexpress
+    restart: unless-stopped
+    ports:
+      - "8081:8081"

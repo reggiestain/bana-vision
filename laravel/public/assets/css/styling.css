@@ -1,0 +1,296 @@
+/* h4
+   {
+   	color:blue;
+   }
+    
+       h5
+   {
+    color:blue;
+   }
+ */
+ul {
+  list-style: none;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+#myNavbar {
+  /* background-image: url("../../assets/img/sayagata-400px.png"); */
+  background-size: 150px 150px;
+  background-repeat: repeat;
+}
+
+.borderedIcons {
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid grey;
+  padding: 10px;
+}
+
+.borderedIcon1 {
+  background-color: white;
+  color: #ff5500;
+  border-radius: 50%;
+  border: 3px solid #ff5500;
+  padding: 10px;
+}
+
+#footer-img {
+  display: block;
+}
+#banner {
+  display: inline;
+  margin-left: 100px;
+}
+
+.orangeText {
+  color: #ff5500;
+}
+
+#post_wrapper .edit_pen {
+  visibility: hidden;
+}
+#post_wrapper:hover .edit_pen {
+  visibility: visible;
+}
+
+.interactive_icons {
+  padding-left: 50px;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+.row.content {
+  height: 1500px;
+}
+
+/* Set gray background color and 100% height */
+.sidenav {
+  background-color: #f1f1f1;
+  height: 100%;
+}
+
+/* Set black background color, white text and some padding */
+
+/*SEARCH FORM*/
+.search-form {
+  border-radius: 30px 30px 30px 30px;
+  /*border-radius:Top-left, Top-right, Bottom-right, Bottom-left;*/
+  margin-top: 10px;
+  background-color: #f0f0f0;
+}
+/*to cange only one form and not all give unique class name like  class="search-form" */
+.search-btn {
+  border-radius: 30px 30px 30px 30px;
+  -moz-border-radius: 30px 30px 30px 30px;
+  /*-webkit-border-radius: 30px 30px 30px 30px;*/
+  -webkit-border-radius: 4px 149px 149px 3px;
+  background-color: #478ac9;
+  cursor: pointer;
+}
+
+.post-img {
+  margin-left: 55px;
+  width: 150%;
+}
+
+.post-text {
+  margin-left: 55px;
+  width: 150%;
+  padding-top: 10px;
+}
+
+.img-circle {
+  background-color: #ffffff;
+}
+
+.svg-icons {
+  width: 25px;
+  height: 25px;
+  background-color: #fff0;
+}
+
+/*.bana_icon
+{
+ width:72px;
+ height:72px;
+ background-color: #ffffff;
+ padding :0;
+ margin :0;
+ position :relative ;
+ top:-27px;
+}*/
+
+.bana_icon svg image {
+  width: 125px;
+  height: 125px;
+  background-color: #ffffff;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  top: -15px;
+}
+
+#vertical-button {
+  transform: rotate(-7deg);
+  -ms-transform: rotate(-90deg); /* IE 9 */
+  -moz-transform: rotate(-90deg); /* Firefox */
+  -webkit-transform: rotate(-90deg); /* Safari and Chrome */
+  -o-transform: rotate(-90deg); /* Opera */
+  position: fixed;
+  top: 460px;
+}
+
+/*.modal-dialog 
+{
+ position: absolute;
+ top:50px;
+ right:50px;
+ bottom:0;
+ left:50px;
+ z-index: 10040;
+ overflow:auto;
+ overflow-y: auto;
+ margin-right: auto;
+ margin-left: auto;
+ width:1000px;
+ height:850px;
+ padding:15px;
+}*/
+
+.modal-content {
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+  outline: none;
+}
+/*.nav-tabs {
+    border-bottom: 1px solid #e4e4e4;
+}
+.nav-tabs > li{
+    margin-right: 1px;
+}
+.nav-tabs > li > a{
+    border-radius: 0px;
+    border: 1px solid #e4e4e4;
+    border-right: 0px none;
+    margin-right: 0px;
+    padding: 8px 17px;
+    color:#222222;
+    transition: all 0.3s ease-in 0s;
+}
+.nav-tabs > li:last-child{
+    border-right:1px solid #ededed;
+}
+.nav-tabs > li > a{
+    padding: 15px 30px;
+    border:1px solid #ededed;
+    border-right: 0px none;
+    border-top: 2px solid #ededed;
+    background: #ededed;
+    color: #8f8f8f;
+    font-weight: bold;
+}
+.nav-tabs > li > a:hover{
+    border-bottom-color: #ededed;
+    border-right: 0px none;
+    background: #f1f1f1;
+    color: #444;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover{
+    border-top: 2px solid #3498db;
+    border-right: 0px none;
+    color: #444;
+}
+.tab-content > .tab-pane{
+    border: 1px solid #e4e4e4;
+    border-top: 0px none;
+    padding: 20px;
+    line-height: 22px;
+}
+.tab-content > .tab-pane > h3{
+    margin-top: 0;
+}
+*/
+html,
+body {
+  height: 100%;
+  overflow: visible;
+}
+
+.form-control {
+  background-color: #f0f0f0;
+}
+
+#container-div {
+  min-height: 100%;
+  margin-bottom: 0;
+  position: relative;
+}
+
+select:focus,
+input[type="password"]:focus,
+input[type="text"]:focus,
+textarea:focus {
+  outline: none !important;
+
+  border-color: #ff5500;
+}
+
+.popover {
+  max-width: none;
+}
+/* body {
+  font-size: 12px;
+} */
+
+.post_wrapper .edit_pen {
+  visibility: hidden !important;
+}
+.post_wrapper:hover .edit_pen {
+  visibility: visible !important;
+}
+dl,
+.p {
+  font-size: 12px;
+}
+
+.bordered {
+  border-radius: 5%;
+}
+
+.panel-default > .panel-heading-custom {
+  background: #ff5500;
+  color: #fff;
+  border-color: #ff5500;
+}
+
+.panel-custom {
+  border-color: #ff5500;
+}
+
+.tab-pane {
+  padding: 0;
+  border: none;
+}
+
+#OpenImgUpload:hover {
+  cursor: pointer !important;
+  cursor: hand !important;
+}
+
+#overlay {
+  background: #ffffff;
+  color: #666666;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 9999999999999;
+  top: 0;
+  left: 0;
+  float: left;
+  text-align: center;
+  padding-top: 25%;
+}
